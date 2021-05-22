@@ -1,3 +1,19 @@
+properties(
+                [
+                    parameters
+                    (
+                            [
+                                string
+                                        (
+                                            defaultValue: Jenkins.instance.getItemByFullName("OrgAuto/Test/main").getLastSuccessfulBuild().getNumber(), 
+                                            description: 'Buils number', 
+                                            name: 'Buld No: ', 
+                                            trim: false
+                                        )
+                            ]
+                    )
+                ]
+            )
 
 pipeline {
     agent any
@@ -36,7 +52,6 @@ pipeline {
                 
                 script {
                     load "env.groovy"
-                    properties([parameters([string(defaultValue: env.buildnumber, description: 'Buils number', name: 'Buld No: ', trim: false)])])
                     def rtServer = Artifactory.server("ArtifactoryLocal")
                     rtServer.download spec: env.downloadSpec
                     jiraAddComment comment: 'download artifact from orgauto-cicd', idOrKey: 'LOC-10', site: 'Jira-Local-Site'
@@ -45,6 +60,12 @@ pipeline {
             }
             
         }
+        stage('Cleanup'){
+			steps{
+				echo 'Cleaning....'
+				deleteDir()
+			}
+		}
         // stage('JIRA') {
         //     steps {
         //         script {

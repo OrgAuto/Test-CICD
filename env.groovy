@@ -1,8 +1,9 @@
 def workspace = "${WORKSPACE}"
 def now = new Date()
 def build_time = now.format("yyMMdd_HHmm", TimeZone.getTimeZone('PST'))
-def buildName = Jenkins.instance.getItemByFullName("OrgAuto/Test/main")
-env.buildnumber = buildName.getLastSuccessfulBuild().getNumber()
+// def buildName = Jenkins.instance.getItemByFullName("OrgAuto/Test/main")
+// env.buildnumber = buildName.getLastSuccessfulBuild().getNumber()
+def buildnumber
 // env.uploadSpec = """{
 //             "files": [
 //                 {
