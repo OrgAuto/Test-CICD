@@ -37,13 +37,8 @@ pipeline {
                 script {
                     load "env.groovy"
                     def rtServer = Artifactory.server("ArtifactoryLocal")
-                    def buildInfo = Artifactory.newBuildInfo()
-                    archiveArtifacts artifacts: 'scripts/*', onlyIfSuccessful: true               
-                    fileOperations([fileZipOperation(folderPath: 'scripts', outputFolderPath: env.workspace)])
-                    rtServer.upload spec: env.uploadSpec, buildInfo: env.buildInfo
-                    rtServer.publishBuildInfo buildInfo
                     rtServer.download spec: env.downloadSpec
-                    jiraAddComment comment: 'Auto comment from Jenkins', idOrKey: 'LOC-10', site: 'Jira-Local-Site'
+                    jiraAddComment comment: 'download artifact from orgauto-cicd', idOrKey: 'LOC-10', site: 'Jira-Local-Site'
                 }
                            
             }
