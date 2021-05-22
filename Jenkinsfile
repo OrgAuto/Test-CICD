@@ -5,7 +5,7 @@ properties(
                             [
                                 string
                                         (
-                                            defaultValue: Jenkins.instance.getItemByFullName("OrgAuto/Test/main").getLastSuccessfulBuild().getNumber(), 
+                                            defaultValue: env.buildnumber, 
                                             description: 'Buils number', 
                                             name: 'Buld No: ', 
                                             trim: false
