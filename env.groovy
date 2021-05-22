@@ -15,7 +15,7 @@ env.buildnumber = buildName.getLastSuccessfulBuild().getNumber()
 env.downloadSpec = """{
             "files": [
                 {
-                    "pattern": "myrepo/${params.BuildNo}_*/*/**",
+                    "pattern": "myrepo/${env.buildnumber}_*/*/**",
                     "target": "${WORKSPACE}/${env.JOB_BASE_NAME}/temp/",
                     "recursive": "true"
                 }
