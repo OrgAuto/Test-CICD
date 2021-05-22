@@ -53,8 +53,7 @@ pipeline {
                 script {
                     load "env.groovy"
                     def rtServer = Artifactory.server("ArtifactoryLocal")
-                    env.buildnumber = params.BuildNo
-                    rtServer.download spec: env.downloadSpec
+                    rtServer.download spec: env.downloadSpec, parameters: [string(value: String.valueOf(BuildNo))]
                     // jiraAddComment comment: 'download artifact from orgauto-cicd', idOrKey: 'LOC-10', site: 'Jira-Local-Site'
                 }
                            
