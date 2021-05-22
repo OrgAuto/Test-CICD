@@ -3,7 +3,7 @@ def now = new Date()
 def build_time = now.format("yyMMdd_HHmm", TimeZone.getTimeZone('PST'))
 // def buildName = Jenkins.instance.getItemByFullName("OrgAuto/Test/main")
 // env.buildnumber = buildName.getLastSuccessfulBuild().getNumber()
-def buildnumber
+def buildnumber = null
 // env.uploadSpec = """{
 //             "files": [
 //                 {

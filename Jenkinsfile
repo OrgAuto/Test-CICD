@@ -54,7 +54,7 @@ pipeline {
                     load "env.groovy"
                     def rtServer = Artifactory.server("ArtifactoryLocal")
                     rtServer.download spec: env.downloadSpec
-                    jiraAddComment comment: 'download artifact from orgauto-cicd', idOrKey: 'LOC-10', site: 'Jira-Local-Site'
+                    // jiraAddComment comment: 'download artifact from orgauto-cicd', idOrKey: 'LOC-10', site: 'Jira-Local-Site'
                 }
                            
             }
