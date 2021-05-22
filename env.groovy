@@ -20,12 +20,11 @@ properties(
                 ]
             )
 
-env.buildnum = env.buildnumber
 
 env.downloadSpec = """{
             "files": [
                 {
-                    "pattern": "myrepo/${env.buildnum}_*/*/**",
+                    "pattern": "myrepo/${params.BuildNo}_*/*/**",
                     "target": "${WORKSPACE}/${env.JOB_BASE_NAME}/temp/",
                     "recursive": "true"
                 }
