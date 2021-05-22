@@ -1,19 +1,19 @@
-properties(
-                [
-                    parameters
-                    (
-                            [
-                                string
-                                        (
-                                            defaultValue: env.buildnumber, 
-                                            description: 'Build number', 
-                                            name: 'BuildNo', 
-                                            trim: false
-                                        )
-                            ]
-                    )
-                ]
-            )
+// properties(
+//                 [
+//                     parameters
+//                     (
+//                             [
+//                                 string
+//                                         (
+//                                             defaultValue: env.buildnumber, 
+//                                             description: 'Build number', 
+//                                             name: 'BuildNo', 
+//                                             trim: false
+//                                         )
+//                             ]
+//                     )
+//                 ]
+//             )
 
 pipeline {
     agent any
@@ -53,7 +53,7 @@ pipeline {
                 script {
                     load "env.groovy"
                     def rtServer = Artifactory.server("ArtifactoryLocal")
-                    env.buildnumber == params.BuildNo
+                    env.buildnum == params.BuildNo
                     rtServer.download spec: env.downloadSpec
                     // jiraAddComment comment: 'download artifact from orgauto-cicd', idOrKey: 'LOC-10', site: 'Jira-Local-Site'
                 }
