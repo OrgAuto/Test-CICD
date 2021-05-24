@@ -1,20 +1,3 @@
-// properties(
-//                 [
-//                     parameters
-//                     (
-//                             [
-//                                 string
-//                                         (
-//                                             defaultValue: env.buildnumber, 
-//                                             description: 'Build number', 
-//                                             name: 'BuildNo', 
-//                                             trim: false
-//                                         )
-//                             ]
-//                     )
-//                 ]
-//             )
-
 pipeline {
     agent any
 
@@ -32,13 +15,13 @@ pipeline {
         stage('Download') {            
             steps {
                 echo "Executing another scripted pipeline Job"
-                // script {
-                //     def bRun = build 'DeployPipeline' 
-                //     for(String line : bRun.getRawBuild().getLog(100)){
-                //         echo "${line}"
-                //     }
+                script {
+                    def bRun = build 'DeployPipeline' 
+                    for(String line : bRun.getRawBuild().getLog(100)){
+                        echo "${line}"
+                    }
 
-                // }
+                }
 
             }
         }
@@ -54,7 +37,6 @@ pipeline {
                     load "env.groovy"
                     def rtServer = Artifactory.server("ArtifactoryLocal")
                     rtServer.download spec: env.downloadSpec
-                    // jiraAddComment comment: 'download artifact from orgauto-cicd', idOrKey: 'LOC-10', site: 'Jira-Local-Site'
                 }
                            
             }
@@ -66,20 +48,6 @@ pipeline {
 				deleteDir()
 			}
 		}
-        // stage('JIRA') {
-        //     steps {
-        //         script {
-        //         def testIssue = [fields: [ project: [key: 'LOC'],
-        //                          summary: 'New JIRA Created from Jenkins.',
-        //                          description: 'New JIRA Created from Jenkins.',
-        //                          issuetype: [id: '10002']]]
-
-        //         response = jiraNewIssue issue: testIssue, site: 'Jira-Local-Site'
-        //         echo response.successful.toString()
-        //         echo response.data.toString()
-        //            }
-        //     }
-        // }
 
     }
 
