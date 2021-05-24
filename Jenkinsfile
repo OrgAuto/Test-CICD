@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo "Executing another scripted pipeline Job"
                 script {
-                    def bRun = build 'DeployPipeline' 
+                    def bRun = build 'durable-freestyle' 
                     for(String line : bRun.getRawBuild().getLog(100)){
                         echo "${line}"
                     }
